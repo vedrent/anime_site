@@ -1,0 +1,287 @@
+body{
+    margin: 0;
+    font-size: 40px;
+}
+
+header{
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    z-index: 10;
+    background-color: orange;
+    display: flex;
+    height: 50px;
+}
+
+main{
+    padding: 90px 10px;
+    padding-bottom: 0;
+    display: flex;
+}
+
+p{
+    margin: 0;
+}
+
+form{
+    /*background-color: blue;*/
+    /*color: red;*/
+    /*display: flex;*/
+    /*height: 50px;*/
+}
+
+input{
+    height: 40px;
+    width: 100% ;
+    position: relative;
+    top: -7px;
+    padding: 0;
+    border: 0px orange;
+    font-size: 20px;
+    /*padding: 2px;*/
+    /*border-color: orange;*/
+    /*padding-top: 1%;*/
+    /*padding-bottom: 1%;*/
+}
+
+main input{
+    height: 40px;
+    width: 100% ;
+    position: relative;
+    top: -7px;
+    padding: 0;
+    border: 2px orange;
+    font-size: 20px;
+    /*padding: 2px;*/
+    /*border-color: orange;*/
+    /*padding-top: 1%;*/
+    /*padding-bottom: 1%;*/
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+ul{
+    margin-top: 0;
+}
+
+h3{
+    margin: 0;
+    padding-left: 5%;
+}
+
+.header-text{
+    margin: 0;
+}
+
+.header-div{
+    width: 20%;
+    /*box-sizing: border-box;*/
+    /*display: block;*/
+    /*flex-grow: 0;*/
+
+}
+
+.header-img{
+    width: 10%;
+}
+
+.div-input{
+    width: 40%;
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+}
+
+.div-ul{
+    background-color: wheat;
+    /*display: flex;*/
+    width: 30%;
+    padding: 5px;
+}
+
+li a{
+    font-size: 20px;
+}
+
+li{
+    list-style-type: none;
+}
+
+.product-list{
+    min-width: 60%;
+    margin: 10px;
+    margin-left: 30px;
+}
+
+.product-list p{
+    font-size: 40px;
+}
+
+.product-list ul{
+    padding: 0;
+    margin-top: 30px;
+}
+
+.product-list li{
+    margin-bottom: 15px;
+}
+
+.product{
+    display: flex;
+    min-width: 60%;
+    height: 100px;
+    border: brown 2px;
+    background-color: rgb(255, 249, 230);
+}
+
+.product img{
+    padding: 5px;
+    width: 20%;
+}
+
+.product p{
+    font-size: 26px;
+    height: 25%;
+    width: 100%;
+    padding: 3px;
+}
+
+.product .description{
+    font-size: 20px;
+    min-height: 100%;
+    max-width: 70%;
+    padding: 3px;
+    margin-right: 5px;
+}
+
+.product-info{
+    display: inline-block;
+    width: 80%;
+}
+
+.product-info div{
+    display: flex;
+}
+
+.forum-list{
+    background-color: wheat;
+    width: 90%;
+    margin-top: 5px;
+    margin-left: 5%;
+
+}
+
+.forum-list ul{
+    padding-left: 0;
+}
+
+.forum-list li{
+    background-color: wheat;
+    border: solid #e3c9a0 1px;
+    min-height: 80px;
+}
+
+.forum-list p{
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.about{
+    background-color: wheat;
+    width: 95%;
+    min-height: 600px;
+}
+
+.user-form{
+    padding: 10px;
+}
+
+.user-form form{
+    width: 40%;
+}
+
+.user-form p{
+    font-size: 22px;
+}
+
+.user-form.about-me form{
+    width: 80%;
+}
+
+@media (max-width: 800px) {
+    .header-text{
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .text{
+        max-width: 10%;
+    }
+    .div-input{
+        width: 60%;
+    }
+    .catalog{
+        background: url("src/catalog_logo.svg") no-repeat 50px;
+        background-size: 50px 50px;
+        background-position-x: center;
+    }
+    .forum{
+        background: url("src/forum_logo.svg") no-repeat 50px;
+        background-size: 44px 44px;
+        background-position-x: center;
+    }
+    .product{
+        min-height: 200px;
+    }
+    .product-info div{
+        vertical-align: middle;
+    }
+    .product .description{
+        font-size: 16px;
+    }
+    .product-info p{
+        font-size: 24px;
+    }
+    .price p{
+        font-size: 20px;
+    }
+    .div-ul p{
+        font-size: 30px;
+    }
+    .div-ul a{
+        font-size: 18px;
+    }
+}
+@media (max-width: 500px) {
+    .header-img{
+        min-width: 50px;
+    }
+    .text{
+        min-width: 50px;
+    }
+    .product-list p{
+        font-size: 30px;
+    }
+    .product-info p{
+        font-size: 24px;
+    }
+    .price p{
+        font-size: 16px;
+    }
+    .div-ul p{
+        font-size: 28px;
+    }
+    .div-ul a{
+        font-size: 16px;
+    }
+    h3{
+        font-size: 1em;
+    }
+}
