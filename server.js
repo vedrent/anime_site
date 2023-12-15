@@ -1,57 +1,84 @@
 const http = require("http");
 const fs = require('fs');
 
-function serveStaticFile(res, path, contentType, responseCode = 200) {
-    fs.readFile(__dirname + path, (err, data) => {
-        if(err) {
-            res.writeHead(500, { 'Content-type': 'text/plain' })
-            return res.end('500 — Внутренняя ошибка')
-        }
-        res.writeHead(responseCode, { 'Content-type': contentType })
-        res.end(data)
-    })
-}
+const express = require("express");
+const MongoClient = require("mongodb").MongoClient;
+const objectId = require("mongodb").ObjectId;
+const url = "mongodb://127.0.0.1:27017/";
+const mongoClient = new MongoClient(url);
 
-// Создаем веб-сервер с обработчиком запросов
-const server = http.createServer((req,res) => {
-    const path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase()
-    switch(path) {
-        case '':
-            serveStaticFile(res, '/index.html', 'text/html; charset=UTF-8')
-            break
-        case '/catalog':
-            serveStaticFile(res, '/index.html', 'text/html; charset=UTF-8')
-            break
-        case '/forum':
-            serveStaticFile(res, '/forum.html', 'text/html; charset=UTF-8')
-            break
-        case '/lk':
-            serveStaticFile(res, '/lk.html', 'text/html; charset=UTF-8')
-            break
-        case '/style.css':
-            serveStaticFile(res, '/style.css', 'text/css; charset=UTF-8')
-            break
-        case '/src/anime_logo.svg':
-            serveStaticFile(res, '/anime_logo.svg', 'image/svg+xml')
-            break
-        case '/src/catalog_logo.svg':
-            serveStaticFile(res, '/src/catalog_logo.svg', 'image/svg+xml')
-            break
-        case '/src/forum_logo.svg':
-            serveStaticFile(res, '/src/forum_logo.svg', 'image/svg+xml')
-            break
-        case '/src/lk_logo.svg':
-            serveStaticFile(res, '/src/LK_logo.svg', 'image/svg+xml')
-            break
-        default:
-            res.writeHead(404, { 'Content-Type': "text/plain; charset=UTF-8" })
-            res.end('Не найдено')
-            break
+const app = express();
+const jsonParser = express.json();
+const urlencodedParser = express.urlencoded({extended: false});
+app.use(express.static(`${__dirname}`));
+
+(async () => {
+    try {
+        await mongoClient.connect();
+        app.locals.collection = mongoClient.db("animedb").collection("product");
+        app.listen(3000);
+        console.log("Сервер ожидает подключения...");
+    }catch(err) {
+        return console.log(err);
     }
-})
+})();
 
-// Запускаем веб-сервер
-server.listen(80, "127.0.0.1", () => {
-    const info = server.address();
-    console.log(`Сервер запущен ${info}`);
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/index.html");
 });
+app.get('/catalog', (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+});
+app.get('/forum', (req, res) => {
+    res.sendFile(__dirname + "/forum.html");
+});
+app.get('/lk', (req, res) => {
+    res.sendFile(__dirname + "/lk.html");
+});
+
+app.get("/api/products", async(req, res) => {
+
+    const collection = req.app.locals.collection;
+    try{
+        const products = await collection.find({}).toArray();
+        res.send(products);
+    }
+    catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+app.get("/api/search/:name", async(req, res) => {
+
+    const collection = req.app.locals.collection;
+    try{
+        const name = req.params.name;
+        const products = await collection.find({name:{$regex:name, $options: "i"}}).toArray();
+        console.log(products)
+        res.send(products);
+    }
+    catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+// app.get("/catalog",urlencodedParser, async(req, res) => {
+//
+//     const collection = req.app.locals.collection;
+//     try{
+//         // const name = new objectId(req.params.productName);
+//         const products = await collection.find({name:{$regex:req.body.productName,$options:"i"}}).toArray();
+//         res.send(products);
+//         // console.log(products);
+//     }
+//     catch(err){
+//         console.log(err);
+//         res.sendStatus(500);
+//     }
+// });
+
+
+
+

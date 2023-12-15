@@ -5,6 +5,7 @@
     <title>Каталог</title>
     <link rel="stylesheet" href="style.css">
     <script src="js.js"></script>
+
 </head>
 
 <body>
@@ -12,7 +13,12 @@
 <header>
     <div class="header-div header-img"><a href="catalog"><img src="src/anime_logo.svg" class="logo"></a></div>
     <div class="header-div text"><a href="catalog"><p class="header-text catalog">Каталог</p></a></div>
-    <div class="header-div div-input"><form><input></form></div>
+    <div class="header-div div-input">
+        <form class="search-form" id="form" onsubmit="getForm()"><label>
+        <input type="text" name="productName">
+    </label></form>
+        <p class="find" onclick="getForm()"><img src="src/magnifier_logo.svg" class="search-logo"></p>
+    </div>
     <div class="header-div text"><a href="forum"><p class="header-text forum">Форум</p></a></div>
     <div class="header-div header-img"><a href="lk"><img src="src/LK_logo.svg" class="logo"></a></div>
 </header>
@@ -42,35 +48,21 @@
 
     <div class="product-list">
         <p>Товары для вас</p>
-        <ul>
-            <li>
-                <a>
-                    <div class="product">
-                        <img src="src/anime_logo.svg">
-                        <div class="product-info">
-                            <p>Стикер в аниме стилистике</p>
-                            <div>
-                                <p class="description">Описание стикера на изображении, бла бла бла, ещё какая-нибудь инфа о нём</p>
-                                <div class="price"><p>Цена </p><p>1000р</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <div class="product">
-                        <img src="src/LK_logo.svg">
-                        <div class="product-info">
-                            <p>Стикер в аниме стилистике</p>
-                            <div>
-                                <p class="description">Описание стикера на изображении, бла бла бла, ещё какая-нибудь инфа о нём</p>
-                                <div class="price"><p>Цена </p><p>790р</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
+        <ul id="ul">
+<!--            <li>-->
+<!--                <a>-->
+<!--                    <div class="product">-->
+<!--                        <img src="src/anime_logo.svg">-->
+<!--                        <div class="product-info">-->
+<!--                            <p>Стикер в аниме стилистике</p>-->
+<!--                            <div>-->
+<!--                                <p class="description">Описание стикера на изображении, бла бла бла, ещё какая-нибудь инфа о нём</p>-->
+<!--                                <div class="price"><p>Цена </p><p>1000р</p></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </li>-->
         </ul>
     </div>
 

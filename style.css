@@ -79,6 +79,7 @@ h3{
 
 .header-div{
     width: 20%;
+    user-select: none;
     /*box-sizing: border-box;*/
     /*display: block;*/
     /*flex-grow: 0;*/
@@ -91,6 +92,7 @@ h3{
 
 .div-input{
     width: 40%;
+    display: flex;
 }
 
 .logo{
@@ -102,11 +104,13 @@ h3{
     background-color: wheat;
     /*display: flex;*/
     width: 30%;
+    max-height: 330px;
     padding: 5px;
 }
 
 li a{
     font-size: 20px;
+    user-select: none;
 }
 
 li{
@@ -213,6 +217,25 @@ li{
 
 .user-form.about-me form{
     width: 80%;
+}
+
+.find{
+    display: inline-block;
+    /*position: absolute;*/
+    width: 10%;
+    min-width: 50px;
+    min-height: 50px;
+    /*left: 50px;*/
+}
+
+.search-form{
+    display: inline-block;
+    width: 90%;
+}
+
+.search-logo{
+    width: 50px;
+    height: 50px;
 }
 
 @media (max-width: 800px) {
