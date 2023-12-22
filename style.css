@@ -108,9 +108,12 @@ h3{
     padding: 5px;
 }
 
+.div-ul li a{
+    user-select: none;
+}
+
 li a{
     font-size: 20px;
-    user-select: none;
 }
 
 li{
@@ -236,6 +239,15 @@ li{
 .search-logo{
     width: 50px;
     height: 50px;
+}
+
+.colorblind img{
+    max-width: 75px;
+    max-height: 75px;
+    position: fixed;
+    left: 50px;
+    bottom: 50px;
+    user-select: none;
 }
 
 @media (max-width: 800px) {

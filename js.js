@@ -6,7 +6,6 @@ function changeToBold(el) {
     }
 }
 
-
 async function getProducts() {
     // отправляет запрос и получаем ответ
     const response = await fetch("/api/products", {
@@ -41,7 +40,6 @@ async function getProducts() {
 }
 getProducts();
 
-
 function getForm(){
     let form = document.getElementById('form');
     let val = form.productName.value;
@@ -50,8 +48,6 @@ function getForm(){
     return false;
 
 }
-
-
 
 async function search(name) {
     // отправляет запрос и получаем ответ
@@ -88,4 +84,22 @@ async function search(name) {
     }
 }
 
+
+let themeLink = document.getElementById("colorblind-id");
+
+function colorblindTheme(){
+    let currTheme = themeLink.getAttribute("href");
+    let theme = ""
+    switch (currTheme){
+        case "":
+            currTheme = "colorblind.css";
+            break;
+        case "colorblind.css":
+            currTheme = "";
+            break;
+        default:
+            break;
+    }
+    themeLink.setAttribute("href", currTheme);
+}
 

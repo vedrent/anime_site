@@ -64,20 +64,6 @@ app.get("/api/search/:name", async(req, res) => {
     }
 });
 
-// app.get("/catalog",urlencodedParser, async(req, res) => {
-//
-//     const collection = req.app.locals.collection;
-//     try{
-//         // const name = new objectId(req.params.productName);
-//         const products = await collection.find({name:{$regex:req.body.productName,$options:"i"}}).toArray();
-//         res.send(products);
-//         // console.log(products);
-//     }
-//     catch(err){
-//         console.log(err);
-//         res.sendStatus(500);
-//     }
-// });
 
 
 

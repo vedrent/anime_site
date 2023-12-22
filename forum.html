@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <title>Форум</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="" id="colorblind-id">
+    <script src="js.js"></script>
+
 </head>
 <body>
 <header>
     <div class="header-div header-img"><a href="catalog"><img src="src/anime_logo.svg" class="logo"></a></div>
     <div class="header-div text"><a href="catalog"><p class="header-text catalog">Каталог</p></a></div>
-    <div class="header-div div-input"><form><input></form></div>
+    <div class="header-div div-input">
+        <form class="search-form" id="form" onsubmit="getForm()"><label>
+            <input type="text" name="productName">
+        </label></form>
+        <p class="find" onclick="getForm()"><img src="src/magnifier_logo.svg" class="search-logo"></p>
+    </div>
     <div class="header-div text"><a href="forum"><p class="header-text forum">Форум</p></a></div>
     <div class="header-div header-img"><a href="lk"><img src="src/LK_logo.svg" class="logo"></a></div>
 </header>
@@ -35,6 +43,10 @@
                 <a><p>Кто лучшая вайфу?</p></a>
             </li>
         </ul>
+    </div>
+
+    <div class="colorblind">
+        <img src="src/colorblind.svg" onclick="colorblindTheme()">
     </div>
 
 </main>

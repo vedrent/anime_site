@@ -1,0 +1,41 @@
+body{
+    font-size: 350%;
+}
+
+header{
+    height: 80px;
+}
+
+main{
+    padding-top: 150px;
+}
+
+.header-img{
+    padding-top: 10px;
+}
+.search-logo{
+    padding-top: 10px;
+}
+.div-ul{
+    max-height: 500px;
+}
+.product-list p{
+    font-size: 60px;
+}
+.product p{
+    font-size: 36px;
+}
+.product{
+    height: 200px;
+}
+
+.forum-list li{
+    min-height: 120px;
+}
+.forum-list p{
+    font-size: 30px;
+}
+
+.user-form p{
+    font-size: 30px;
+}
