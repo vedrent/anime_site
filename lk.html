@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="" id="colorblind-id">
     <script src="js.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', getUserInfo);
+    </script>
 </head>
 
 <body>
@@ -24,40 +26,27 @@
     <div class="header-div header-img"><a href="lk"><img src="src/LK_logo.svg" class="logo"></a></div>
 </header>
 
-<main>
-    <div class="about">
-
-    <div class="user-form">
-        <p>Имя</p>
-        <form><label>
-        <input>
-    </label></form></div>
-
-    <div class="user-form">
-        <p>Никнейм</p>
-        <form><label>
-            <input>
-        </label></form></div>
-
-    <div class="user-form">
-        <p>Адрес электронной почты</p>
-        <form><label>
-            <input>
-        </label></form></div>
-
-    <div class="user-form">
-        <p>Пароль</p>
-        <form><label>
-            <input>
-        </label></form></div>
-
-    <div class="user-form about-me">
-        <p>О себе</p>
-        <form><label>
-            <input>
-        </label></form></div>
+<main style="display: block">
+    <div>
+        <h3>Личный кабинет</h3>
     </div>
-
+    <div class="forms">
+        <form onsubmit="updateUserInfo(); return false;">
+            <label>
+                Имя: <input type="text" id="username" disabled>
+            </label>
+            <br>
+            <label>
+                Email: <input type="email" id="email" required>
+            </label>
+            <br>
+            <label>
+                Телефон: <input type="text" id="phone" required>
+            </label>
+            <br>
+            <button type="submit">Обновить информацию</button>
+        </form>
+    </div>
     <div class="colorblind">
         <img src="src/colorblind.svg" onclick="colorblindTheme()">
     </div>

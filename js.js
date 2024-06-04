@@ -1,12 +1,32 @@
-function changeToBold(el) {
-    if (el.style.fontWeight === 'bold') {
-        el.style.fontWeight = 'normal';
+async function register(username, password, email, phone) {
+    const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, email, phone })
+    });
+    if (response.ok === true) {
+        alert('Регистрация успешна');
     } else {
-        el.style.fontWeight = 'bold';
+        alert('Ошибка регистрации');
     }
 }
 
-async function getProducts() {
+async function login(username, password) {
+    const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    });
+    if (response.ok === true) {
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        alert('Вход успешен');
+    } else {
+        alert('Ошибка входа');
+    }
+}
+
+async function getProducts(category = '') {
     // отправляет запрос и получаем ответ
     const response = await fetch("/api/products", {
         method: "GET",
@@ -17,8 +37,12 @@ async function getProducts() {
         // получаем данные
         const products = await response.json();
         let rows = document.getElementById('ul');
+        rows.innerHTML = "";
 
         products.forEach(product => {
+            if (category && product.category !== category) {
+                return;
+            }
 
             // console.log(product);
             let li = document.createElement('li');
@@ -84,6 +108,20 @@ async function search(name) {
     }
 }
 
+function filterByCategory(category, el) {
+    if (el.style.fontWeight === 'bold') {
+        el.style.fontWeight = 'normal';
+        getProducts('');
+    } else {
+        let lis = document.querySelectorAll('li > a')
+        for (let li of lis){
+            li.style.fontWeight = 'normal';
+        }
+
+        el.style.fontWeight = 'bold';
+        getProducts(category);
+    }
+}
 
 let themeLink = document.getElementById("colorblind-id");
 
@@ -103,3 +141,104 @@ function colorblindTheme(){
     themeLink.setAttribute("href", currTheme);
 }
 
+async function loadTopic(title) {
+    const token = localStorage.getItem('token');
+    const response = await fetch("/api/topics/" + title, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Authorization": token
+        }
+    });
+    if (response.ok === true) {
+        const topic = await response.json();
+        let main = document.querySelector('main');
+        main.innerHTML = `<div class="topic"><h3>${topic.title}</h3></div><div class="topic">${topic.content}</div><div class="topic-messages" id="messages"></div><div class="topic forms"><textarea id="messageInput"></textarea><button onclick="postMessage('${title}')">Отправить</button></div>`;
+        loadMessages(title);
+    }
+}
+
+async function loadMessages(topicTitle) {
+    const token = localStorage.getItem('token');
+    const response = await fetch("/api/messages/" + topicTitle, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Authorization": token
+        }
+    });
+    if (response.ok === true) {
+        const messages = await response.json();
+        let messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = "";
+        messages.forEach(message => {
+            let messageElement = document.createElement('div');
+            messageElement.textContent = message.content;
+            messagesDiv.appendChild(messageElement);
+        });
+    }
+}
+
+async function postMessage(topicTitle) {
+    const token = localStorage.getItem('token');
+    const messageInput = document.getElementById('messageInput');
+    const messageContent = messageInput.value;
+    const message = {
+        topic: topicTitle,
+        content: messageContent
+    };
+
+    const response = await fetch("/api/messages", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+        },
+        body: JSON.stringify(message)
+    });
+
+    if (response.ok === true) {
+        messageInput.value = "";
+        loadMessages(topicTitle);
+    }
+}
+
+async function getUserInfo() {
+    const token = localStorage.getItem('token');
+    const response = await fetch('/api/user', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': token
+        }
+    });
+    if (response.ok === true) {
+        const user = await response.json();
+        document.getElementById('username').value = user.username;
+        document.getElementById('email').value = user.email || '';
+        document.getElementById('phone').value = user.phone || '';
+    } else {
+        alert('Ошибка при загрузке информации о пользователе');
+    }
+}
+
+async function updateUserInfo() {
+    const token = localStorage.getItem('token');
+    const userInfo = {
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value
+    };
+    const response = await fetch('/api/user', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(userInfo)
+    });
+    if (response.ok === true) {
+        alert('Информация обновлена');
+    } else {
+        alert('Ошибка при обновлении информации');
+    }
+}

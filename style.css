@@ -69,8 +69,11 @@ ul{
 }
 
 h3{
-    margin: 0;
+    margin: 0 0 10px;
     padding-left: 5%;
+    font-size: 40px;
+    font-weight: normal;
+    font-family: Verdana, serif;
 }
 
 .header-text{
@@ -250,6 +253,79 @@ li{
     user-select: none;
 }
 
+.forms{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+}
+
+.forms input, textarea{
+    font-family: inherit;
+    background-color: #fff3de;
+    background-clip: padding-box;
+    border: 1px solid wheat;
+    border-radius: 0.25rem;
+    padding: 3px 3px 3px 10px;
+}
+
+.forms textarea{
+    font-size: 24px;
+    min-width: 75%;
+    min-height: 200px;
+    margin-right: 5%;
+}
+
+.forms button{
+    font-family: inherit;
+    font-size: 20px;
+    border-radius: 0.25rem;
+    background-color: wheat;
+    border: 2px solid #e3c9a0;
+    padding: 10px;
+    min-width: 10%;
+}
+
+.register{
+    max-width: 50%;
+    min-width: 50%;
+    margin: 20px;
+}
+
+.login{
+    max-width: 43%;
+    min-width: 43%;
+    margin: 20px;
+}
+
+.topic{
+    margin: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topic-messages{
+    margin: 20px;
+}
+
+.topic-messages div{
+    margin: 10px;
+    padding: 25px;
+    background-color: wheat;
+    border-color: #e3c9a0;
+    border-radius: 0.25rem;
+    background-clip: padding-box;
+    min-height: 150px;
+}
+
+.topic button{
+    min-width: 20%;
+    max-height: 50px;
+}
+
+
+
 @media (max-width: 800px) {
     .header-text{
         text-indent: 100%;
@@ -293,6 +369,12 @@ li{
     .div-ul a{
         font-size: 18px;
     }
+    .forms textarea{
+        font-size: 20px;
+        min-width: 73%;
+        min-height: 200px;
+        margin-right: 3%;
+    }
 }
 @media (max-width: 500px) {
     .header-img{
@@ -318,5 +400,11 @@ li{
     }
     h3{
         font-size: 1em;
+    }
+    .forms textarea{
+        font-size: 20px;
+        min-width: 60%;
+        min-height: 200px;
+        margin-right: 2%;
     }
 }

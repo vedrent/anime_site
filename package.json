@@ -2,7 +2,10 @@
   "name": "mongoapp",
   "version": "1.0.0",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.17.0",
-    "mongodb": "^5.4.0"
+    "mongodb": "^5.4.0",
+    "jsonwebtoken": "9.0.0",
+    "bcrypt": "^5.0.1"
   }
 }
