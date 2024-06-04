@@ -27,14 +27,11 @@ async function login(username, password) {
 }
 
 async function getProducts(category = '') {
-    // отправляет запрос и получаем ответ
     const response = await fetch("/api/products", {
         method: "GET",
         headers: { "Accept": "application/json" }
     });
-    // если запрос прошел нормально
     if (response.ok === true) {
-        // получаем данные
         const products = await response.json();
         let rows = document.getElementById('ul');
         rows.innerHTML = "";
@@ -44,7 +41,6 @@ async function getProducts(category = '') {
                 return;
             }
 
-            // console.log(product);
             let li = document.createElement('li');
                 li.innerHTML = "<a>\n" +
         "                    <div class=\"product\">\n" +
@@ -67,27 +63,20 @@ getProducts();
 function getForm(){
     let form = document.getElementById('form');
     let val = form.productName.value;
-    // alert(val);
     search(val);
     return false;
-
 }
 
 async function search(name) {
-    // отправляет запрос и получаем ответ
     const response = await fetch("/api/search/" + name, {
         method: "GET",
         headers: { "Accept": "application/json" }
     });
-    // если запрос прошел нормально
     if (response.ok === true) {
-        // получаем данные
         const products = await response.json();
-        // alert(products[0].name);
         let rows = document.getElementById('ul');
         rows.innerHTML = ""
         products.forEach(product => {
-            // console.log(product);
             let li = document.createElement('li');
             li.innerHTML = "<a>\n" +
                 "                    <div class=\"product\">\n" +
@@ -102,7 +91,6 @@ async function search(name) {
                 "                    </div>\n" +
                 "                </a>";
 
-            // alert(1)
             rows.append(li);
         });
     }
@@ -127,7 +115,6 @@ let themeLink = document.getElementById("colorblind-id");
 
 function colorblindTheme(){
     let currTheme = themeLink.getAttribute("href");
-    let theme = ""
     switch (currTheme){
         case "":
             currTheme = "colorblind.css";
@@ -153,7 +140,9 @@ async function loadTopic(title) {
     if (response.ok === true) {
         const topic = await response.json();
         let main = document.querySelector('main');
-        main.innerHTML = `<div class="topic"><h3>${topic.title}</h3></div><div class="topic">${topic.content}</div><div class="topic-messages" id="messages"></div><div class="topic forms"><textarea id="messageInput"></textarea><button onclick="postMessage('${title}')">Отправить</button></div>`;
+        main.innerHTML = `<div class="topic"><h3>${topic.title}</h3></div><div class="topic">${topic.content}</div>
+            <div class="topic-messages" id="messages"></div><div class="topic forms"><textarea id="messageInput"></textarea>
+            <button onclick="postMessage('${title}')">Отправить</button></div>`;
         loadMessages(title);
     }
 }

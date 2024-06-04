@@ -25,22 +25,22 @@
 <main style="display: block">
     <div class="forms">
         <div class="register">
-        <h3>Регистрация</h3>
-        <form onsubmit="register(document.getElementById('registerUsername').value, document.getElementById('registerPassword').value, document.getElementById('registerEmail').value, document.getElementById('registerPhone').value); return false;">
-            <input type="text" id="registerUsername" placeholder="Имя" required>
-            <input type="password" id="registerPassword" placeholder="Пароль" required>
-            <input type="text" id="registerEmail" placeholder="Email" required>
-            <input type="text" id="registerPhone" placeholder="Телефон" required>
-            <button type="submit">Зарегистрироваться</button>
-        </form>
+            <h3>Регистрация</h3>
+            <form onsubmit="register(document.getElementById('registerUsername').value, document.getElementById('registerPassword').value, document.getElementById('registerEmail').value, document.getElementById('registerPhone').value); return false;">
+                <input type="text" id="registerUsername" placeholder="Имя" required>
+                <input type="password" id="registerPassword" placeholder="Пароль" required>
+                <input type="text" id="registerEmail" placeholder="Email" required>
+                <input type="text" id="registerPhone" placeholder="Телефон" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
         </div>
         <div class="login">
-        <h3>Вход</h3>
-        <form onsubmit="login(document.getElementById('loginUsername').value, document.getElementById('loginPassword').value); return false;">
-            <input type="text" id="loginUsername" placeholder="Имя" required>
-            <input type="password" id="loginPassword" placeholder="Пароль" required>
-            <button type="submit">Войти</button>
-        </form>
+            <h3>Вход</h3>
+            <form onsubmit="login(document.getElementById('loginUsername').value, document.getElementById('loginPassword').value); return false;">
+                <input type="text" id="loginUsername" placeholder="Имя" required>
+                <input type="password" id="loginPassword" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
         </div>
     </div>
 

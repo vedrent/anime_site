@@ -15,8 +15,7 @@ header{
 }
 
 main{
-    padding: 90px 10px;
-    padding-bottom: 0;
+    padding: 90px 10px 0;
     display: flex;
 }
 
@@ -25,10 +24,7 @@ p{
 }
 
 form{
-    /*background-color: blue;*/
-    /*color: red;*/
-    /*display: flex;*/
-    /*height: 50px;*/
+
 }
 
 input{
@@ -37,12 +33,8 @@ input{
     position: relative;
     top: -7px;
     padding: 0;
-    border: 0px orange;
+    border: 0 orange;
     font-size: 20px;
-    /*padding: 2px;*/
-    /*border-color: orange;*/
-    /*padding-top: 1%;*/
-    /*padding-bottom: 1%;*/
 }
 
 main input{
@@ -53,10 +45,6 @@ main input{
     padding: 0;
     border: 2px orange;
     font-size: 20px;
-    /*padding: 2px;*/
-    /*border-color: orange;*/
-    /*padding-top: 1%;*/
-    /*padding-bottom: 1%;*/
 }
 
 a{
@@ -83,10 +71,6 @@ h3{
 .header-div{
     width: 20%;
     user-select: none;
-    /*box-sizing: border-box;*/
-    /*display: block;*/
-    /*flex-grow: 0;*/
-
 }
 
 .header-img{
@@ -105,7 +89,6 @@ h3{
 
 .div-ul{
     background-color: wheat;
-    /*display: flex;*/
     width: 30%;
     max-height: 330px;
     padding: 5px;
@@ -125,8 +108,7 @@ li{
 
 .product-list{
     min-width: 60%;
-    margin: 10px;
-    margin-left: 30px;
+    margin: 10px 10px 10px 30px;
 }
 
 .product-list p{
@@ -227,11 +209,9 @@ li{
 
 .find{
     display: inline-block;
-    /*position: absolute;*/
     width: 10%;
     min-width: 50px;
     min-height: 50px;
-    /*left: 50px;*/
 }
 
 .search-form{

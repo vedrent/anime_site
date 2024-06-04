@@ -1,24 +1,16 @@
-const http = require("http");
-const fs = require('fs');
-
 const express = require("express");
 const MongoClient = require("mongodb").MongoClient;
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const objectId = require("mongodb").ObjectId;
 const url = "mongodb://127.0.0.1:27017/";
 const secretKey = 'some_secret_key';
 const mongoClient = new MongoClient(url);
 
 const app = express();
-const jsonParser = express.json();
-const urlencodedParser = express.urlencoded({extended: false});
 
 app.use(bodyParser.json());
 app.use(express.static(`${__dirname}`));
-
-let topicsCollection, messagesCollection;
 
 (async () => {
     try {
@@ -52,7 +44,6 @@ app.post('/api/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = { username, password: hashedPassword, email, phone };
         const result = await collection.insertOne(newUser);
-        // res.send(result);
         res.sendStatus(201);
     } catch (err) {
         console.log(err);
@@ -110,7 +101,6 @@ app.get("/api/search/:name", async(req, res) => {
     try{
         const name = req.params.name;
         const products = await collection.find({name:{$regex:name, $options: "i"}}).toArray();
-        console.log(products)
         res.send(products);
     }
     catch(err){
@@ -119,18 +109,8 @@ app.get("/api/search/:name", async(req, res) => {
     }
 });
 
-// app.get("/api/topics", async (req, res) => {
-//     const collection = req.app.locals.topics;
-//     try {
-//         const topics = await collection.find({}).toArray();
-//         res.send(topics);
-//     } catch (err) {
-//         console.log(err);
-//         res.sendStatus(500);
-//     }
-// });
-
 app.get("/api/topics/:title", authenticateToken, async (req, res) => {
+
     const collection = req.app.locals.topics;
     try {
         const title = req.params.title;
@@ -143,6 +123,7 @@ app.get("/api/topics/:title", authenticateToken, async (req, res) => {
 });
 
 app.get("/api/messages/:topicTitle", authenticateToken, async (req, res) => {
+
     const collection = req.app.locals.messages;
     try {
         const topicTitle = req.params.topicTitle;
@@ -155,6 +136,7 @@ app.get("/api/messages/:topicTitle", authenticateToken, async (req, res) => {
 });
 
 app.post("/api/messages", authenticateToken, async (req, res) => {
+
     const collection = req.app.locals.messages;
     try {
         const message = req.body;
@@ -167,6 +149,7 @@ app.post("/api/messages", authenticateToken, async (req, res) => {
 });
 
 app.get('/api/user', authenticateToken, async (req, res) => {
+
     const collection = req.app.locals.users;
     try {
         const username = req.user.username;
@@ -179,6 +162,7 @@ app.get('/api/user', authenticateToken, async (req, res) => {
 });
 
 app.put('/api/user', authenticateToken, async (req, res) => {
+
     const collection = req.app.locals.users;
     try {
         const username = req.user.username;
@@ -193,4 +177,3 @@ app.put('/api/user', authenticateToken, async (req, res) => {
         res.sendStatus(500);
     }
 });
-
